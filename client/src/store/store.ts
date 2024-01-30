@@ -1,4 +1,4 @@
-import create from 'zustand'
+import create from "zustand";
 
 interface Todo {
   id: number;
@@ -15,8 +15,14 @@ interface TodoStore {
 let idCount = 0;
 
 export const useStore = create<TodoStore>((set) => ({
-  todos: [{ id: 0, task: 'test1', done: false }, { id: 1, task: 'test2', done: true }],
-  addTodo: (task) => set((state) => ({ todos: [...state.todos, { id: idCount++, task, done: false }] })),
+  todos: [
+    { id: 0, task: "test1", done: false },
+    { id: 1, task: "test2", done: true },
+  ],
+  addTodo: (task) =>
+    set((state) => ({
+      todos: [...state.todos, { id: idCount++, task, done: true }],
+    })),
   doneTodo: (id) =>
     set((state) => ({
       todos: state.todos.map((todo) =>

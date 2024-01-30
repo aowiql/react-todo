@@ -1,12 +1,11 @@
 import "./component.css";
 
 interface TodoTaskProp {
-  key: number;
   task: string;
   done: boolean;
 }
 
-const TodoTask = ({ key, task, done }: TodoTaskProp) => {
+const TodoTask = ({ task, done }: TodoTaskProp) => {
   return (
     <>
       {done ? (

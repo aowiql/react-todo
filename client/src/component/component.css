@@ -72,24 +72,35 @@
 .todoTask {
   display: flex;
   flex-direction: row;
-  width: 200px;
+  width: 350px;
   height: 65px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.todoTask > span {
+  width: 350px;
+  font-size: 20px;
 }
 
 .todoTask > button {
-  width: 30%;
+  width: 60px;
   height: 30px;
   border: none;
   background: #d6e0f0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
   margin: 10px;
 }
 
+.todoTask > button:hover {
+  transform: scale(1.1);
+}
+
 .todoTaskLine {
-  width: 250%;
-  height: 0.3vh;
+  width: 400px;
+  height: 0.1vh;
   background-color: #d6e0f0;
   margin-bottom: 20px;
 }
