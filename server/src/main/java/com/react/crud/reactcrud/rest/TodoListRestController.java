@@ -53,4 +53,19 @@ public class TodoListRestController {
 
         return checkTodo;
     }
+
+    // 삭제
+    @DeleteMapping("/lists/{todoId}")
+    public String deleteTodo(@PathVariable int todoId) {
+        TodoLists todoLists = todoService.findById(todoId);
+
+        if(todoLists == null) {
+            throw new RuntimeException("Todo lists not found - " + todoId);
+        }
+
+        todoService.deleteById(todoId);
+
+        return "Delete todo id - " + todoId;
+    }
+
 }

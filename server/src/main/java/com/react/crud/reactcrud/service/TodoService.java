@@ -20,5 +20,6 @@ public interface TodoService {
     // 체크리스트
     TodoLists doneTodo(TodoLists theTodo);
 
+    // 삭제
     void deleteById(int theId);
 }

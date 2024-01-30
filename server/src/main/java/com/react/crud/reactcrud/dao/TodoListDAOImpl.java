@@ -30,9 +30,11 @@ public class TodoListDAOImpl implements TodoListDAO {
         return todoLists;
     }
 
+    // 하나 조회
     @Override
     public TodoLists findById(int theId) {
-        return null;
+        TodoLists theTodo = entityManager.find(TodoLists.class, theId);
+        return theTodo;
     }
 
     // 게시글 추가
@@ -61,8 +63,11 @@ public class TodoListDAOImpl implements TodoListDAO {
         return theTodo;
     }
 
+    // 삭제
     @Override
     public void deleteById(int theId) {
+        TodoLists deleteTodo = entityManager.find(TodoLists.class, theId);
 
+        entityManager.remove(deleteTodo);
     }
 }

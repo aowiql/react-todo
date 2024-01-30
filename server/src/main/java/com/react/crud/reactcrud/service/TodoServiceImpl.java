@@ -22,6 +22,7 @@ public class TodoServiceImpl implements TodoService {
         return todoListDAO.findAll();
     }
 
+    // 글 하나 탐색
     @Override
     public TodoLists findById(int theId) {
         return todoListDAO.findById(theId);
@@ -48,7 +49,7 @@ public class TodoServiceImpl implements TodoService {
         return todoListDAO.doneTodo(theTodo);
     }
 
-
+    // 삭제
     @Override
     @Transactional
     public void deleteById(int theId) {
