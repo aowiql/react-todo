@@ -3,7 +3,9 @@ import { useStore } from '../store/store';
 
 const Input = () => {
   const [inputValue, setInputValue] = useState('');
+
   const inputRef = useRef<HTMLInputElement>(null);
+  
   const { addTodo } = useStore();
   
   const handleInput = (e:React.ChangeEvent<HTMLInputElement>) => {
