@@ -28,8 +28,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     @Transactional
-    public TodoLists save(TodoLists theTodo) {
-        return todoListDAO.save(theTodo);
+    public TodoLists addTodo(TodoLists theTodo) {
+        return todoListDAO.addTodo(theTodo);
     }
 
     @Override

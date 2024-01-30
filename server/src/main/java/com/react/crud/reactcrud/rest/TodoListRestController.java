@@ -25,4 +25,13 @@ public class TodoListRestController {
         return todoService.findAll();
     }
 
+    // 게시글 작성
+    @PostMapping("/lists")
+    public TodoLists addTodo(@RequestBody TodoLists theTodo) {
+        theTodo.setId(0);
+
+        TodoLists addTodo = todoService.addTodo(theTodo);
+
+        return addTodo;
+    }
 }

@@ -10,7 +10,7 @@ public interface TodoListDAO {
 
     TodoLists findById(int theId);
 
-    TodoLists save(TodoLists theTodo);
+    TodoLists addTodo(TodoLists theTodo);
 
     void deleteById(int theId);
 }

@@ -35,8 +35,10 @@ public class TodoListDAOImpl implements TodoListDAO {
     }
 
     @Override
-    public TodoLists save(TodoLists theTodo) {
-        return null;
+    @Transactional
+    public TodoLists addTodo(TodoLists theTodo) {
+        TodoLists existingTodo = entityManager.merge(theTodo);
+        return existingTodo;
     }
 
     @Override
