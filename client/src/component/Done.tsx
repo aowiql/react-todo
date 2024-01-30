@@ -4,7 +4,7 @@ const Done = () => {
   return (
     <div className='activetitle'>
       <h1>Done</h1>
-      <div></div>
+      <div className='activeline'></div>
     </div>
   )
 }

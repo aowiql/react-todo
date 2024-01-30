@@ -61,7 +61,7 @@
   font-weight: 400;
 }
 
-.activetitle > div{
+.activeline {
   width: 100%;
   height: 0.3vh;
   border-radius: 5px;
