@@ -34,4 +34,12 @@ public class TodoListRestController {
 
         return addTodo;
     }
+
+    // 게시글 수정
+    @PutMapping("/lists")
+    public TodoLists updateTodo(@RequestBody TodoLists theTodo) {
+        TodoLists updated = todoService.updateTodo(theTodo);
+
+        return updated;
+    }
 }

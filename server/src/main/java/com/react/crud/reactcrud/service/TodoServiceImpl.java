@@ -34,6 +34,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     @Transactional
+    public TodoLists updateTodo(TodoLists theTodo) {
+        return todoListDAO.updateTodo(theTodo);
+    }
+
+    @Override
+    @Transactional
     public void deleteById(int theId) {
         todoListDAO.deleteById(theId);
     }

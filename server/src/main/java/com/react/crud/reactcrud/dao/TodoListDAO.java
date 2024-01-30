@@ -5,12 +5,16 @@ import com.react.crud.reactcrud.entity.TodoLists;
 import java.util.List;
 
 public interface TodoListDAO {
-
+    // 게시글 조회
     List<TodoLists> findAll();
 
     TodoLists findById(int theId);
 
+    // 게시글 작성
     TodoLists addTodo(TodoLists theTodo);
+
+    // 게시글 수정
+    TodoLists updateTodo(TodoLists theTodo);
 
     void deleteById(int theId);
 }

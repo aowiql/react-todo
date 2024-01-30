@@ -42,6 +42,13 @@ public class TodoListDAOImpl implements TodoListDAO {
     }
 
     @Override
+    public TodoLists updateTodo(TodoLists theTodo) {
+
+        TodoLists updateTodo = entityManager.merge(theTodo);
+        return updateTodo;
+    }
+
+    @Override
     public void deleteById(int theId) {
 
     }
