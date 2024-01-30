@@ -66,4 +66,30 @@
   height: 0.3vh;
   border-radius: 5px;
   background-color: #d6e0f0;
+  margin-bottom: 40px;
+}
+
+.todoTask {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  height: 65px;
+}
+
+.todoTask > button {
+  width: 30%;
+  height: 30px;
+  border: none;
+  background: #d6e0f0;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.todoTaskLine {
+  width: 250%;
+  height: 0.3vh;
+  background-color: #d6e0f0;
+  margin-bottom: 20px;
 }

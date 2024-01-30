@@ -1,12 +1,23 @@
-import './component.css'
+import { useStore } from "../store/store";
+import TodoTask from "./TodoTask";
+import "./component.css";
 
 const Done = () => {
-  return (
-    <div className='activetitle'>
-      <h1>Done</h1>
-      <div className='activeline'></div>
-    </div>
-  )
-}
+  const { todos } = useStore();
 
-export default Done
+  return (
+    <div className="activetitle">
+      <h1>Done</h1>
+      <div className="activeline"></div>
+      {todos.map((todo) =>
+        todo.done ? (
+          <></>
+        ) : (
+          <TodoTask key={todo.id} done={todo.done} task={todo.task} />
+        )
+      )}
+    </div>
+  );
+};
+
+export default Done;

@@ -15,7 +15,7 @@ interface TodoStore {
 let idCount = 0;
 
 export const useStore = create<TodoStore>((set) => ({
-  todos: [],
+  todos: [{ id: 0, task: 'test1', done: false }, { id: 1, task: 'test2', done: true }],
   addTodo: (task) => set((state) => ({ todos: [...state.todos, { id: idCount++, task, done: false }] })),
   doneTodo: (id) =>
     set((state) => ({
