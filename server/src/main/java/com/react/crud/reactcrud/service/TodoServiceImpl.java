@@ -16,6 +16,7 @@ public class TodoServiceImpl implements TodoService {
         todoListDAO = theTodoListDAO;
     }
 
+    // 게시글 전체조회
     @Override
     public List<TodoLists> findAll() {
         return todoListDAO.findAll();
@@ -26,17 +27,27 @@ public class TodoServiceImpl implements TodoService {
         return todoListDAO.findById(theId);
     }
 
+    // 게시글 추가
     @Override
     @Transactional
     public TodoLists addTodo(TodoLists theTodo) {
         return todoListDAO.addTodo(theTodo);
     }
 
+    // 게시글 수정
     @Override
     @Transactional
     public TodoLists updateTodo(TodoLists theTodo) {
         return todoListDAO.updateTodo(theTodo);
     }
+
+    // 체크리스트
+    @Override
+    @Transactional
+    public TodoLists doneTodo(TodoLists theTodo) {
+        return todoListDAO.doneTodo(theTodo);
+    }
+
 
     @Override
     @Transactional

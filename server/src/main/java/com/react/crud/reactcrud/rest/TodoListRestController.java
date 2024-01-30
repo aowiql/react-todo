@@ -42,4 +42,15 @@ public class TodoListRestController {
 
         return updated;
     }
+
+    // 체크리스트
+    @PutMapping("/check")
+    public TodoLists doneTodo(@RequestBody TodoLists theTodo) {
+
+        theTodo.setTodoDone(!theTodo.isTodoDone());
+
+        TodoLists checkTodo = todoService.doneTodo(theTodo);
+
+        return checkTodo;
+    }
 }

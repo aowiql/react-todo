@@ -19,6 +19,7 @@ public class TodoListDAOImpl implements TodoListDAO {
         entityManager = theEntityManager;
     }
 
+    // 게시글 전체조회
     @Override
     public List<TodoLists> findAll() {
         TypedQuery<TodoLists> theQuery =
@@ -34,6 +35,7 @@ public class TodoListDAOImpl implements TodoListDAO {
         return null;
     }
 
+    // 게시글 추가
     @Override
     @Transactional
     public TodoLists addTodo(TodoLists theTodo) {
@@ -41,11 +43,22 @@ public class TodoListDAOImpl implements TodoListDAO {
         return existingTodo;
     }
 
+    // 게시글 수정
     @Override
     public TodoLists updateTodo(TodoLists theTodo) {
 
         TodoLists updateTodo = entityManager.merge(theTodo);
         return updateTodo;
+    }
+
+    // 체크리스트
+    @Override
+    public TodoLists doneTodo(TodoLists theTodo) {
+        TodoLists doneTodo = entityManager.find(TodoLists.class, theTodo.getId());
+
+        doneTodo.setTodoDone(!doneTodo.isTodoDone());
+
+        return theTodo;
     }
 
     @Override

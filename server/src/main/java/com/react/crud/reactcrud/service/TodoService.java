@@ -17,5 +17,8 @@ public interface TodoService {
     // 게시글 수정
     TodoLists updateTodo(TodoLists theTodo);
 
+    // 체크리스트
+    TodoLists doneTodo(TodoLists theTodo);
+
     void deleteById(int theId);
 }
