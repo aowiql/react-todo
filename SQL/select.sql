@@ -1,0 +1,1 @@
+SELECT * FROM react_todo_directory.todolists;
