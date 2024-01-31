@@ -1,10 +1,13 @@
 import React, { useState, useRef, KeyboardEvent } from "react";
 import { useStore } from "../store/store";
+import { addTodoBackend } from "../api/postTodo";
 
 const Input = () => {
   const [inputValue, setInputValue] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const backUrl = "http://localhost:8080";
 
   const { addTodo } = useStore();
 
@@ -12,11 +15,24 @@ const Input = () => {
     setInputValue(e.target.value);
   };
 
-  const handleAddTodo = () => {
+  // const handleAddTodo = () => {
+  //   if (inputValue.trim()) {
+  //     addTodo(inputValue.trim());
+  //     setInputValue("");
+  //     inputRef.current?.focus();
+  //   }
+  // };
+
+  const handleAddTodo = async () => {
     if (inputValue.trim()) {
-      addTodo(inputValue.trim());
-      setInputValue("");
-      inputRef.current?.focus();
+      try {
+        await addTodoBackend(backUrl, inputValue.trim());
+
+        setInputValue("");
+        inputRef.current?.focus();
+      } catch (error) {
+        console.error("Error", error);
+      }
     }
   };
 
