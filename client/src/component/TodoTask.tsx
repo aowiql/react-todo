@@ -1,6 +1,6 @@
 import "./component.css";
 
-import React from "react";
+import React, { useState } from "react";
 import { useStore } from "../store/store";
 
 interface TodoTaskProp {
@@ -12,15 +12,8 @@ interface TodoTaskProp {
 const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
   const { doneTodo, deleteTodo, updateTodo } = useStore();
 
-  const [editing, setEditing] = useStore((state) => [
-    state.editing,
-    state.setEditing,
-  ]);
-
-  const [editedTask, setEditedTask] = useStore((state) => [
-    state.editedTask,
-    state.setEditedTask,
-  ]);
+  const [editing, setEditing] = useState(false);
+  const [editedTask, setEditedTask] = useState(task);
 
   const todoDoneHandler = () => {
     doneTodo(todoId);

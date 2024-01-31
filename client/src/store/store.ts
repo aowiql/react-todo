@@ -12,10 +12,6 @@ interface TodoStore {
   doneTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
   updateTodo: (id: number, newTask: string) => void;
-  editing: boolean;
-  setEditing: (editing: boolean) => void;
-  editedTask: string;
-  setEditedTask: (editedTask: string) => void;
 }
 
 let idCount = 2;
@@ -52,10 +48,4 @@ export const useStore = create<TodoStore>((set) => ({
         todo.id === id ? { ...todo, task: newTask } : todo
       ),
     })),
-
-  // input => span 적용
-  editing: false,
-  setEditing: (editing) => set({ editing }),
-  editedTask: "",
-  setEditedTask: (editedTask) => set({ editedTask }),
 }));
