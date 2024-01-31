@@ -83,6 +83,14 @@
   font-size: 20px;
 }
 
+.todoTask > input {
+  width: 350px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
 .todoTask.done > span {
   text-decoration: line-through;
   opacity: 0.5;

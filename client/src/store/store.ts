@@ -11,6 +11,11 @@ interface TodoStore {
   addTodo: (text: string) => void;
   doneTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  updateTodo: (id: number, newTask: string) => void;
+  editing: boolean;
+  setEditing: (editing: boolean) => void;
+  editedTask: string;
+  setEditedTask: (editedTask: string) => void;
 }
 
 let idCount = 2;
@@ -34,4 +39,14 @@ export const useStore = create<TodoStore>((set) => ({
     set((state) => ({
       todos: state.todos.filter((todo) => todo.id !== id),
     })),
+  updateTodo: (id, newTask) =>
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id ? { ...todo, task: newTask } : todo
+      ),
+    })),
+  editing: false,
+  setEditing: (editing) => set({ editing }),
+  editedTask: "",
+  setEditedTask: (editedTask) => set({ editedTask }),
 }));
