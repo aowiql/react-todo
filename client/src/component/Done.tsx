@@ -16,8 +16,6 @@ const Done = () => {
 
   const backUrl = "http://localhost:8080";
 
-  // const [todoItems, setTodoItems] = useState<Todos[]>([]);
-
   const { data: todoItems } = useQuery<Todos[]>("todoItems", () =>
     getTodoItems(backUrl)
   );
@@ -26,7 +24,6 @@ const Done = () => {
     const fetchTodoItems = async () => {
       try {
         const data = await getTodoItems(backUrl);
-        // setTodoItems(data);
       } catch (error) {
         console.error("Error", error);
       }

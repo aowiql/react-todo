@@ -14,10 +14,7 @@ interface TodoStore {
 }
 
 export const useStore = create<TodoStore>((set) => ({
-  todos: [
-    // { id: 0, task: "test1", done: false },
-    // { id: 1, task: "test2", done: true },
-  ],
+  todos: [],
 
   inputValue: "",
   setInputValue: (value: string) => set({ inputValue: value }),

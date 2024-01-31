@@ -1,8 +1,6 @@
 import React, { useState, useRef, KeyboardEvent } from "react";
-import { useStore } from "../store/store";
 import { addTodoBackend } from "../api/postTodo";
-import { getTodoItems } from "../api/getTodo";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const Input = () => {
   const [inputValue, setInputValue] = useState("");
@@ -22,19 +20,9 @@ const Input = () => {
     }
   );
 
-  // const { addTodo } = useStore();
-
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  // const handleAddTodo = () => {
-  //   if (inputValue.trim()) {
-  //     addTodo(inputValue.trim());
-  //     setInputValue("");
-  //     inputRef.current?.focus();
-  //   }
-  // };
 
   const handleAddTodo = async () => {
     if (inputValue.trim()) {

@@ -1,7 +1,6 @@
 import "./component.css";
 
 import React, { useState } from "react";
-import { useStore } from "../store/store";
 import { deleteTodoBackend } from "../api/deleteTodo";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -25,18 +24,12 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
     }
   );
 
-  // const { doneTodo, deleteTodo, updateTodo } = useStore();
-
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
 
-  const todoDoneHandler = () => {
-    // doneTodo(todoId);
-  };
+  const todoDoneHandler = () => {};
 
   const delTodoHandler = async () => {
-    // deleteTodo(todoId);
-
     try {
       await mutation.mutateAsync(todoId);
     } catch (error) {
@@ -45,7 +38,6 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
   };
 
   const updateTodoHandler = () => {
-    // updateTodo(todoId, editedTask);
     setEditing(!editing);
   };
 
