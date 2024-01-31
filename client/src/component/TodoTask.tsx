@@ -3,6 +3,7 @@ import "./component.css";
 import React, { useState } from "react";
 import { useStore } from "../store/store";
 import { deleteTodoBackend } from "../api/deleteTodo";
+import { useMutation, useQueryClient } from "react-query";
 
 interface TodoTaskProp {
   task: string;
@@ -12,6 +13,17 @@ interface TodoTaskProp {
 
 const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
   const backUrl = "http://localhost:8080";
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (todoId: number) => deleteTodoBackend(backUrl, todoId),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("todoItems");
+      },
+    }
+  );
 
   // const { doneTodo, deleteTodo, updateTodo } = useStore();
 
@@ -26,7 +38,7 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
     // deleteTodo(todoId);
 
     try {
-      await deleteTodoBackend(backUrl, todoId);
+      await mutation.mutateAsync(todoId);
     } catch (error) {
       console.error("Error", error);
     }
