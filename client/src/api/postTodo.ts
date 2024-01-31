@@ -1,4 +1,7 @@
-export const addTodoBackend = async (backUrl: string, todoTask: string) => {
+export const addTodoBackend = async (
+  backUrl: string,
+  todoTask: string
+): Promise<void> => {
   try {
     const response = await fetch(`${backUrl}/api/lists`, {
       method: "POST",

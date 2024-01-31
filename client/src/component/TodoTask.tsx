@@ -13,13 +13,13 @@ interface TodoTaskProp {
 const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
   const backUrl = "http://localhost:8080";
 
-  const { doneTodo, deleteTodo, updateTodo } = useStore();
+  // const { doneTodo, deleteTodo, updateTodo } = useStore();
 
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
 
   const todoDoneHandler = () => {
-    doneTodo(todoId);
+    // doneTodo(todoId);
   };
 
   const delTodoHandler = async () => {
@@ -33,7 +33,7 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
   };
 
   const updateTodoHandler = () => {
-    updateTodo(todoId, editedTask);
+    // updateTodo(todoId, editedTask);
     setEditing(!editing);
   };
 

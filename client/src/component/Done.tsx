@@ -3,6 +3,7 @@ import { useStore } from "../store/store";
 import TodoTask from "./TodoTask";
 import "./component.css";
 import { getTodoItems } from "../api/getTodo";
+import { useQuery } from "react-query";
 
 interface Todos {
   id: number;
@@ -15,13 +16,17 @@ const Done = () => {
 
   const backUrl = "http://localhost:8080";
 
-  const [todoItems, setTodoItems] = useState<Todos[]>([]);
+  // const [todoItems, setTodoItems] = useState<Todos[]>([]);
+
+  const { data: todoItems } = useQuery<Todos[]>("todoItems", () =>
+    getTodoItems(backUrl)
+  );
 
   useEffect(() => {
     const fetchTodoItems = async () => {
       try {
         const data = await getTodoItems(backUrl);
-        setTodoItems(data);
+        // setTodoItems(data);
       } catch (error) {
         console.error("Error", error);
       }
@@ -41,7 +46,7 @@ const Done = () => {
     <div className="activetitle" ref={scrollRef}>
       <h1>Done</h1>
       <div className="activeline"></div>
-      {todoItems.map((todo) =>
+      {todoItems?.map((todo) =>
         todo.todoDone ? (
           <></>
         ) : (

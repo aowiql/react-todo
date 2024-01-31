@@ -1,6 +1,8 @@
 import React, { useState, useRef, KeyboardEvent } from "react";
 import { useStore } from "../store/store";
 import { addTodoBackend } from "../api/postTodo";
+import { getTodoItems } from "../api/getTodo";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Input = () => {
   const [inputValue, setInputValue] = useState("");
@@ -9,7 +11,18 @@ const Input = () => {
 
   const backUrl = "http://localhost:8080";
 
-  const { addTodo } = useStore();
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(
+    (todoTask: string) => addTodoBackend(backUrl, todoTask),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("todoItems");
+      },
+    }
+  );
+
+  // const { addTodo } = useStore();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -26,10 +39,12 @@ const Input = () => {
   const handleAddTodo = async () => {
     if (inputValue.trim()) {
       try {
-        await addTodoBackend(backUrl, inputValue.trim());
+        await mutate(inputValue.trim());
 
         setInputValue("");
         inputRef.current?.focus();
+
+        await queryClient.invalidateQueries("todoItems");
       } catch (error) {
         console.error("Error", error);
       }
