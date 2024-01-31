@@ -36,9 +36,9 @@ public class TodoListRestController {
     }
 
     // 게시글 수정
-    @PutMapping("/lists")
-    public TodoLists updateTodo(@RequestBody TodoLists theTodo) {
-        TodoLists updated = todoService.updateTodo(theTodo);
+    @PutMapping("/change/{todoId}")
+    public TodoLists updateTodo(@PathVariable Long todoId, @RequestBody TodoLists theTodo) {
+        TodoLists updated = todoService.updateTodo(todoId, theTodo);
 
         return updated;
     }

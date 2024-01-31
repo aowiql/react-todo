@@ -2,6 +2,7 @@ package com.react.crud.reactcrud.service;
 
 import com.react.crud.reactcrud.dao.TodoListDAO;
 import com.react.crud.reactcrud.entity.TodoLists;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ public class TodoServiceImpl implements TodoService {
 
     private TodoListDAO todoListDAO;
 
+    @Autowired
     public TodoServiceImpl(TodoListDAO theTodoListDAO) {
         todoListDAO = theTodoListDAO;
     }
@@ -38,8 +40,8 @@ public class TodoServiceImpl implements TodoService {
     // 게시글 수정
     @Override
     @Transactional
-    public TodoLists updateTodo(TodoLists theTodo) {
-        return todoListDAO.updateTodo(theTodo);
+    public TodoLists updateTodo(Long todoId, TodoLists theTodo) {
+        return todoListDAO.updateTodo(todoId, theTodo);
     }
 
     // 체크리스트

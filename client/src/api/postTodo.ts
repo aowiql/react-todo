@@ -8,7 +8,7 @@ export const addTodoBackend = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todoTask, todoDone: false }),
+      body: JSON.stringify({ todoTask, todoDone: true }),
     });
 
     if (!response.ok) {

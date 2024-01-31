@@ -47,9 +47,15 @@ public class TodoListDAOImpl implements TodoListDAO {
 
     // 게시글 수정
     @Override
-    public TodoLists updateTodo(TodoLists theTodo) {
+    public TodoLists updateTodo(Long todoId, TodoLists theTodo) {
 
-        TodoLists updateTodo = entityManager.merge(theTodo);
+        TodoLists updateTodo = entityManager.find(TodoLists.class, todoId);
+
+        if(updateTodo != null) {
+            updateTodo.setTodoTask(theTodo.getTodoTask());
+
+            entityManager.merge(updateTodo);
+        }
         return updateTodo;
     }
 

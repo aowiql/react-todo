@@ -2,8 +2,9 @@ import "./component.css";
 
 import React, { useState } from "react";
 import { deleteTodoBackend } from "../api/deleteTodo";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { TodoItem, doneTodo } from "../api/doneTodo";
+import { putTodoBackend } from "../api/putTodo";
 
 interface TodoTaskProp {
   task: string;
@@ -55,7 +56,13 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
     }
   };
 
-  const updateTodoHandler = () => {
+  const updateTodoHandler = async () => {
+    try {
+      await putTodoBackend(backUrl, todoId, editedTask);
+      queryClient.invalidateQueries("todoItems");
+    } catch (error) {
+      console.error("Error", error);
+    }
     setEditing(!editing);
   };
 

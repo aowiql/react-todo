@@ -15,7 +15,7 @@ public interface TodoService {
     TodoLists addTodo(TodoLists theTodo);
 
     // 게시글 수정
-    TodoLists updateTodo(TodoLists theTodo);
+    TodoLists updateTodo(Long todoId, TodoLists theTodo);
 
     // 체크리스트
     TodoLists doneTodo(Long todoId, TodoLists theTodo);
