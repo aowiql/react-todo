@@ -2,6 +2,7 @@ import "./component.css";
 
 import React, { useState } from "react";
 import { useStore } from "../store/store";
+import { deleteTodoBackend } from "../api/deleteTodo";
 
 interface TodoTaskProp {
   task: string;
@@ -10,6 +11,8 @@ interface TodoTaskProp {
 }
 
 const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
+  const backUrl = "http://localhost:8080";
+
   const { doneTodo, deleteTodo, updateTodo } = useStore();
 
   const [editing, setEditing] = useState(false);
@@ -19,8 +22,14 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
     doneTodo(todoId);
   };
 
-  const delTodoHandler = () => {
-    deleteTodo(todoId);
+  const delTodoHandler = async () => {
+    // deleteTodo(todoId);
+
+    try {
+      await deleteTodoBackend(backUrl, todoId);
+    } catch (error) {
+      console.error("Error", error);
+    }
   };
 
   const updateTodoHandler = () => {
