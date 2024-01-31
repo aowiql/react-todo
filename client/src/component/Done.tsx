@@ -1,10 +1,33 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore } from "../store/store";
 import TodoTask from "./TodoTask";
 import "./component.css";
+import { getTodoItems } from "../api/getTodo";
+
+interface Todos {
+  id: number;
+  todoTask: string;
+  todoDone: boolean;
+}
 
 const Done = () => {
   const { todos } = useStore();
+
+  const backUrl = "http://localhost:8080";
+
+  const [todoItems, setTodoItems] = useState<Todos[]>([]);
+
+  useEffect(() => {
+    const fetchTodoItems = async () => {
+      try {
+        const data = await getTodoItems(backUrl);
+        setTodoItems(data);
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
+    fetchTodoItems();
+  }, []);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -18,14 +41,14 @@ const Done = () => {
     <div className="activetitle" ref={scrollRef}>
       <h1>Done</h1>
       <div className="activeline"></div>
-      {todos.map((todo) =>
-        todo.done ? (
+      {todoItems.map((todo) =>
+        todo.todoDone ? (
           <></>
         ) : (
           <TodoTask
             key={todo.id}
-            done={todo.done}
-            task={todo.task}
+            done={todo.todoDone}
+            task={todo.todoTask}
             todoId={todo.id}
           />
         )
