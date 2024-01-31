@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useStore } from "../store/store";
+import { useEffect, useRef } from "react";
 import TodoTask from "./TodoTask";
 import "./component.css";
 import { getTodoItems } from "../api/getTodo";
@@ -12,22 +11,21 @@ interface Todos {
 }
 
 const Done = () => {
-  const { todos } = useStore();
-
   const backUrl = "http://localhost:8080";
 
-  const { data: todoItems } = useQuery<Todos[]>("todoItems", () =>
+  const { data: todoItems, refetch } = useQuery<Todos[]>("todoItems", () =>
     getTodoItems(backUrl)
   );
 
+  const fetchTodoItems = async () => {
+    try {
+      await refetch();
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchTodoItems = async () => {
-      try {
-        const data = await getTodoItems(backUrl);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
     fetchTodoItems();
   }, []);
 
@@ -37,7 +35,7 @@ const Done = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [todos]);
+  }, [todoItems]);
 
   return (
     <div className="activetitle" ref={scrollRef}>

@@ -1,7 +1,6 @@
 import "./component.css";
-import { useStore } from "../store/store";
+
 import TodoTask from "./TodoTask";
-import { useEffect, useState } from "react";
 import { getTodoItems } from "../api/getTodo";
 import { useQuery } from "react-query";
 
@@ -12,25 +11,11 @@ interface Todos {
 }
 
 const Active = () => {
-  const { todos } = useStore();
-
   const backUrl = "http://localhost:8080";
 
   const { data: todoItems } = useQuery<Todos[]>("todoItems", () =>
     getTodoItems(backUrl)
   );
-
-  useEffect(() => {
-    const fetchTodoItems = async () => {
-      try {
-        const data = await getTodoItems(backUrl);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-    fetchTodoItems();
-  }, [todos]);
 
   return (
     <div className="activetitle" key="active">

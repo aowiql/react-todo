@@ -9,8 +9,6 @@ export const doneTodo = async (
   currentTodoDone: boolean
 ): Promise<TodoItem> => {
   try {
-    console.log("todoId:", todoId, "currentTodoDone:", currentTodoDone);
-
     const response = await fetch(`${backUrl}/api/check/${todoId}`, {
       method: "PUT",
       headers: {
@@ -27,7 +25,6 @@ export const doneTodo = async (
     }
 
     const updatedTodo: TodoItem = await response.json();
-    console.log("Updated Todo:", updatedTodo);
     return updatedTodo;
   } catch (error) {
     console.error("Error", error);

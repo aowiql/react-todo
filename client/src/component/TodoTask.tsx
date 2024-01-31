@@ -2,7 +2,7 @@ import "./component.css";
 
 import React, { useState } from "react";
 import { deleteTodoBackend } from "../api/deleteTodo";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { TodoItem, doneTodo } from "../api/doneTodo";
 import { putTodoBackend } from "../api/putTodo";
 
