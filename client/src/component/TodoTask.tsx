@@ -25,7 +25,7 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
           <button onClick={todoDoneHandler}>완료</button>
         </div>
       ) : (
-        <div className="todoTask" key={todoId}>
+        <div className="todoTask done" key={todoId}>
           <span>{task}</span>
           <button onClick={todoDoneHandler}>복귀</button>
           <button>삭제</button>

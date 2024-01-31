@@ -83,6 +83,11 @@
   font-size: 20px;
 }
 
+.todoTask.done > span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .todoTask > button {
   width: 60px;
   height: 30px;
