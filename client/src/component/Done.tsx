@@ -22,7 +22,12 @@ const Done = () => {
         todo.done ? (
           <></>
         ) : (
-          <TodoTask key={todo.id} done={todo.done} task={todo.task} />
+          <TodoTask
+            key={todo.id}
+            done={todo.done}
+            task={todo.task}
+            todoId={todo.id}
+          />
         )
       )}
     </div>

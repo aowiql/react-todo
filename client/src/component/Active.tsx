@@ -6,12 +6,17 @@ const Active = () => {
   const { todos } = useStore();
 
   return (
-    <div className="activetitle">
+    <div className="activetitle" key="active">
       <h1>Active</h1>
-      <div className="activeline"></div>
+      <div className="activeline" key="activeLine"></div>
       {todos.map((todo) =>
         todo.done ? (
-          <TodoTask key={todo.id} task={todo.task} done={todo.done} />
+          <TodoTask
+            key={todo.id}
+            task={todo.task}
+            todoId={todo.id}
+            done={todo.done}
+          />
         ) : (
           <></>
         )

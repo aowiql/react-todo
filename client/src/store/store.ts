@@ -12,7 +12,7 @@ interface TodoStore {
   doneTodo: (id: number) => void;
 }
 
-let idCount = 0;
+let idCount = 2;
 
 export const useStore = create<TodoStore>((set) => ({
   todos: [
