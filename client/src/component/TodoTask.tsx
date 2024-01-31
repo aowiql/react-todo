@@ -9,11 +9,14 @@ interface TodoTaskProp {
 }
 
 const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
-  const { doneTodo } = useStore();
+  const { doneTodo, deleteTodo } = useStore();
 
   const todoDoneHandler = () => {
-    console.log("Clicked 완료 button with id:", todoId);
     doneTodo(todoId);
+  };
+
+  const delTodoHandler = () => {
+    deleteTodo(todoId);
   };
 
   return (
@@ -28,7 +31,7 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
         <div className="todoTask done" key={todoId}>
           <span>{task}</span>
           <button onClick={todoDoneHandler}>복귀</button>
-          <button>삭제</button>
+          <button onClick={delTodoHandler}>삭제</button>
         </div>
       )}
       <div className="todoTaskLine"></div>

@@ -10,6 +10,7 @@ interface TodoStore {
   todos: Todo[];
   addTodo: (text: string) => void;
   doneTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 
 let idCount = 2;
@@ -28,5 +29,9 @@ export const useStore = create<TodoStore>((set) => ({
       todos: state.todos.map((todo) =>
         todo.id === id ? { ...todo, done: !todo.done } : todo
       ),
+    })),
+  deleteTodo: (id) =>
+    set((state) => ({
+      todos: state.todos.filter((todo) => todo.id !== id),
     })),
 }));
