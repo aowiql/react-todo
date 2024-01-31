@@ -45,8 +45,8 @@ public class TodoServiceImpl implements TodoService {
     // 체크리스트
     @Override
     @Transactional
-    public TodoLists doneTodo(TodoLists theTodo) {
-        return todoListDAO.doneTodo(theTodo);
+    public TodoLists doneTodo(Long todoId, TodoLists theTodo) {
+        return todoListDAO.doneTodo(todoId, theTodo);
     }
 
     // 삭제

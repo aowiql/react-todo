@@ -44,12 +44,12 @@ public class TodoListRestController {
     }
 
     // 체크리스트
-    @PutMapping("/check")
-    public TodoLists doneTodo(@RequestBody TodoLists theTodo) {
+    @PutMapping("/check/{todoId}")
+    public TodoLists doneTodo(@PathVariable Long todoId, @RequestBody TodoLists theTodo) {
 
         theTodo.setTodoDone(!theTodo.isTodoDone());
 
-        TodoLists checkTodo = todoService.doneTodo(theTodo);
+        TodoLists checkTodo = todoService.doneTodo(todoId, theTodo);
 
         return checkTodo;
     }

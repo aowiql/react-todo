@@ -18,7 +18,7 @@ public interface TodoService {
     TodoLists updateTodo(TodoLists theTodo);
 
     // 체크리스트
-    TodoLists doneTodo(TodoLists theTodo);
+    TodoLists doneTodo(Long todoId, TodoLists theTodo);
 
     // 삭제
     void deleteById(int theId);

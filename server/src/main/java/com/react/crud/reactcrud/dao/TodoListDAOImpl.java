@@ -55,10 +55,12 @@ public class TodoListDAOImpl implements TodoListDAO {
 
     // 체크리스트
     @Override
-    public TodoLists doneTodo(TodoLists theTodo) {
-        TodoLists doneTodo = entityManager.find(TodoLists.class, theTodo.getId());
+    public TodoLists doneTodo(Long todoId, TodoLists theTodo) {
+        TodoLists doneTodo = entityManager.find(TodoLists.class, todoId);
 
-        doneTodo.setTodoDone(!doneTodo.isTodoDone());
+        if(doneTodo != null) {
+            doneTodo.setTodoDone(!doneTodo.isTodoDone());
+        }
 
         return theTodo;
     }

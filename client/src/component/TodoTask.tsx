@@ -3,6 +3,7 @@ import "./component.css";
 import React, { useState } from "react";
 import { deleteTodoBackend } from "../api/deleteTodo";
 import { useMutation, useQueryClient } from "react-query";
+import { TodoItem, doneTodo } from "../api/doneTodo";
 
 interface TodoTaskProp {
   task: string;
@@ -24,10 +25,27 @@ const TodoTask = ({ task, done, todoId }: TodoTaskProp) => {
     }
   );
 
+  const doneMutation = useMutation(
+    (todoId: number) => doneTodo(backUrl, todoId, done),
+    {
+      onSuccess: (updatedTodo: TodoItem) => {
+        console.log("Mutation Success. Updated Todo:", updatedTodo);
+        queryClient.invalidateQueries("todoItems");
+      },
+    }
+  );
+
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
 
-  const todoDoneHandler = () => {};
+  const todoDoneHandler = async () => {
+    console.log("todoDoneHandler called");
+    try {
+      await doneMutation.mutateAsync(todoId);
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
 
   const delTodoHandler = async () => {
     try {
